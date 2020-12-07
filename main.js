@@ -1,17 +1,38 @@
 document.addEventListener("click", rippleClick);
 var mainContainer = document.getElementById("mainContainer");
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var svg = document.getElementById("svgID");
+
+var colors = ["black", "green", "red", "orange", "blue", "purple", "gray"];
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 function rippleClick(event) {
-  var X = event.clientX;
-  var Y = event.clientY;
-  var R = 10;
-  console.log(X, Y);
-  ctx.lineWidth = 3;
-  ctx.fillStyle = "#000000";
-
-  ctx.beginPath();
-  ctx.arc(X, Y, R, 0, 2 * Math.PI);
-  ctx.stroke();
+  const sleep = (milliseconds) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  };
+  const newCircles = async () => {
+    for (var i = 0; i < 50; i += 1) {
+      //   var prevCircle = document.getElementById("prevCircle");
+      //   if (prevCircle) {
+      //     svg.removeChild(prevCircle);
+      //   }
+      var circle = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+      var color = getRandomInt(colors.length);
+      circle.setAttributeNS(null, "cx", event.clientX);
+      circle.setAttributeNS(null, "cy", event.clientY);
+      circle.setAttributeNS(null, "r", i * 5);
+      circle.setAttributeNS(null, "stroke", colors[color]);
+      circle.setAttributeNS(null, "stroke-width", 2.5);
+      circle.setAttributeNS(null, "fill", "none");
+      circle.setAttributeNS(null, "id", "prevCircle");
+      svg.appendChild(circle);
+      await sleep(10);
+    }
+  };
+  newCircles();
 }
