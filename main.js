@@ -1,4 +1,5 @@
-document.addEventListener("click", rippleClick);
+// document.addEventListener("click", rippleClick);
+document.addEventListener("mousemove", rippleClick);
 var mainContainer = document.getElementById("mainContainer");
 var svg = document.getElementById("svgID");
 
@@ -13,7 +14,7 @@ function rippleClick(event) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
   const newCircles = async () => {
-    for (var i = 0; i < 50; i += 1) {
+    for (var i = 0; i < 25; i += 1) {
       //   var prevCircle = document.getElementById("prevCircle");
       //   if (prevCircle) {
       //     svg.removeChild(prevCircle);
