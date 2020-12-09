@@ -14,7 +14,8 @@ function rippleClick(event) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
   const newCircles = async () => {
-    for (var i = 0; i < 25; i += 1) {
+    for (var i = 0; i < 20; i += 1) {
+      // for (var i = 0; i < 10; i += 1) {
       //   var prevCircle = document.getElementById("prevCircle");
       //   if (prevCircle) {
       //     svg.removeChild(prevCircle);
@@ -24,12 +25,15 @@ function rippleClick(event) {
         "circle"
       );
       var color = getRandomInt(colors.length);
+      var rMod = (i + 1) * 5;
       circle.setAttributeNS(null, "cx", event.clientX);
       circle.setAttributeNS(null, "cy", event.clientY);
-      circle.setAttributeNS(null, "r", i * 5);
+      // circle.setAttributeNS(null, "r", i * 5);
+      circle.setAttributeNS(null, "r", rMod);
       circle.setAttributeNS(null, "stroke", colors[color]);
       circle.setAttributeNS(null, "stroke-width", 2.5);
       circle.setAttributeNS(null, "fill", "none");
+      // circle.setAttributeNS(null, "fill", colors[color]);
       circle.setAttributeNS(null, "id", "prevCircle");
       svg.appendChild(circle);
       await sleep(10);
